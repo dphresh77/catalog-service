@@ -1,5 +1,7 @@
 package com.polarbookshop.catalogservice.domain;
 
+import com.polarbookshop.catalogservice.exceptions.BookAlreadyExistsException;
+import com.polarbookshop.catalogservice.exceptions.BookNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
