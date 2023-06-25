@@ -31,4 +31,21 @@ public class CatalogServiceApplicationTests {
                             .isEqualTo(expectedBook.isbn());
                 });
     }
+
+    @Test
+    void whenPutRequestThenIsOk(){
+        var bookToBeUpdated = new Book("1234567890", "Title","Author", 10.00);
+        var updatedBook = new Book("1234567890", "newTitle", "newAuthor", 1.00);
+
+        webTestClient
+                .put()
+                .uri("/books/1234567890")
+                .bodyValue(updatedBook)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Book.class).value(actualBook -> {
+                    assertThat(actualBook).isNotNull();
+                });
+
+    }
 }
