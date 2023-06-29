@@ -1,12 +1,18 @@
 package com.polarbookshop.catalogservice.webtests;
 
 import com.polarbookshop.catalogservice.domain.Book;
+import com.polarbookshop.catalogservice.domain.BookService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willReturn;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) //Servlet Container listening on random port
@@ -14,6 +20,9 @@ public class CatalogServiceApplicationTests {
 
     @Autowired
     private WebTestClient webTestClient;
+
+    @Autowired
+    BookService bookService;
 
     @Test
     void whenPostRequestThenBookCreated() {
