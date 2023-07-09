@@ -1,7 +1,8 @@
 package com.polarbookshop.catalogservice.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+@RefreshScope
 @ConfigurationProperties(prefix = "polar")
 public class PolarProperties {
     /**
