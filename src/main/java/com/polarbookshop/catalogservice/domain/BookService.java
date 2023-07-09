@@ -37,10 +37,12 @@ public class BookService {
         return bookRepository.findByIsbn(isbn)
                 .map(exisitingBook -> {
                     var bookToUpdate = new Book(
+                            exisitingBook.id(),
                             exisitingBook.isbn(),
                             book.title(),
                             book.author(),
-                            book.price());
+                            book.price(),
+                     exisitingBook.version());
                     return bookRepository.save(bookToUpdate);
                 }).orElseGet(() -> addBookToCatalog(book));
     }
