@@ -9,6 +9,7 @@ import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,7 +27,7 @@ public class BookValidationTests {
     @Test
     void whenAllFieldsCorrectThenValidationSucceeds() {
         var book =
-                new Book("1234567890", "Title","Author", 9.90);
+                new Book(1L,"1234567890", "Title","Author", 9.90, Instant.now(), Instant.now(), 1);
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).isEmpty();
     }
@@ -34,7 +35,7 @@ public class BookValidationTests {
     @Test
     void whenIsbnDefinedButIncorrectThenValidationFails(){
         var book =
-                new Book("a234567890", "Title","Author", 9.90);
+                new Book(2L,"a234567890", "Title","Author", 9.90, Instant.now(), Instant.now(), 2);
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).hasSize(1);
         assertThat(violations.iterator().next().getMessage())
