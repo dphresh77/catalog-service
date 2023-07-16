@@ -10,5 +10,3 @@ CREATE TABLE book (
     version integer     NOT NULL
 
 );
-
-spring

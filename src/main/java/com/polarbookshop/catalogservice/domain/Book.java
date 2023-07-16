@@ -34,7 +34,7 @@ public record Book(
         @CreatedDate
         Instant createdDate,
 
-        @LastModifiedBy
+        @LastModifiedDate
         Instant lastModifiedDate,
 
         @Version

@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 public interface BookRepository extends CrudRepository<Book, Long> {
-    Iterable<Book> findAll();
+ //   Iterable<Book> findAll();
     Optional<Book> findByIsbn(String isbn);
     boolean existsByIsbn(String isbn);
-    Book save(Book book);
+ //   Book save(Book book);
     @Modifying
     @Transactional
     @Query("delete from Book where isbn = :isbn")
