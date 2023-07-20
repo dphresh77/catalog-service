@@ -26,16 +26,16 @@ public class BookValidationTests {
 
     @Test
     void whenAllFieldsCorrectThenValidationSucceeds() {
-        var book =
-                new Book(1L,"1234567890", "Title","Author", 9.90, Instant.now(), Instant.now(), 1);
+
+          var book  = Book.of("1234567890", "Title","Author", 9.90, "Polarsophia");
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).isEmpty();
     }
 
     @Test
     void whenIsbnDefinedButIncorrectThenValidationFails(){
-        var book =
-                new Book(2L,"a234567890", "Title","Author", 9.90, Instant.now(), Instant.now(), 2);
+
+            var book = Book.of("a234567890", "Title","Author", 9.90, "Polarsophia");
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).hasSize(1);
         assertThat(violations.iterator().next().getMessage())

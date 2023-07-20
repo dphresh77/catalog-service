@@ -28,7 +28,7 @@ public class CatalogServiceApplicationTests {
 
     @Test
     void whenPostRequestThenBookCreated() {
-        var expectedBook = Book.of("1231231231", "Title", "Author", 9.90);
+        var expectedBook = Book.of("1231231231", "Title", "Author", 9.90, "Polarsophia");
 
         webTestClient
                 .post() //HTTP Request to send
@@ -46,7 +46,7 @@ public class CatalogServiceApplicationTests {
    @Test
     void whenPutRequestThenBookUpdated(){
         var bookIsbn = "1231231232";
-        var bookToCreate = Book.of(bookIsbn, "Title", "Author", 9.90);
+        var bookToCreate = Book.of(bookIsbn, "Title", "Author", 9.90, "Polarsophia");
         Book createdBook = webTestClient
                 .post()
                 .uri("/books")
@@ -57,7 +57,7 @@ public class CatalogServiceApplicationTests {
                 .returnResult().getResponseBody();
 
         var bookToUpdate = new Book(createdBook.id(), createdBook.isbn(), createdBook.title(), createdBook.author(),
-                7.95, createdBook.createdDate(), createdBook.lastModifiedDate(), createdBook.version());
+                7.95,createdBook.publisher() , createdBook.createdDate(), createdBook.lastModifiedDate(), createdBook.version());
 
         webTestClient
                 .put()

@@ -30,7 +30,7 @@ public class BookControllerTest {
                 .willThrow(BookNotFoundException.class); //Defines expected behavior for BookService MockBean
 
         mockMvc
-                .perform(get("/books" + isbn)) //MockMvc used to perform GET and verify the result
+                .perform(get("/books/" + isbn)) //MockMvc used to perform GET and verify the result
                 .andExpect(status().isNotFound()); //Expects the status to have a 404 NOT FOUND
     }
 
