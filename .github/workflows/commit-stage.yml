@@ -68,12 +68,11 @@ jobs:
           image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
           fail-build: false
           severity-cutoff: high
+      - name: Print SARIF output
+        run: echo ${{ steps.scan.outputs.sarif }}
       - name: Upload vulnerability report
         uses: github/codeql-action/upload-sarif@v2
         if: success() || failure()
-      - name: Print SARIF output
-        run: echo ${{ steps.scan.outputs.sarif }}
-
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
       - name: Log into container registry
