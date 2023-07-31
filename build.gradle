@@ -64,7 +64,7 @@ bootRun {
 			publishRegistry {
 				username = project.findProperty("registryUsername")
 				password = project.findProperty("registryToken")
-				url = "https://ghcr.io"
+				url = project.findProperty("registryUrl")
 			}
 		}
 	}
